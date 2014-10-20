@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<title>学校应用门户</title>
+
+<link rel="stylesheet" href="lib/css/mobile.css">
+<link rel="stylesheet" href="lib/css/style.css">
+
+</head>
+
+<body>
+<div class="ky_main">
+		<div class="ky_download">
+        	<div class="logo"></div>
+			<div class="title">
+				<p class="ky_font16">校园应用中心</p>
+				<p class="ky_grey ky_mt5">报名、选课、请假、评语...</p>
+			</div>
+		</div>
+		<div class="ky_main">
+			
+			<div class="ky_carousel">
+            	<div class="ky_banner">
+                	<p><label><i class="ky_banner_ico org"></i>组织：</label><em>${(cc.deptName)!}</em></p>
+                    <p><label><i class="ky_banner_ico user"></i>姓名：</label><em>${(cc.Name)!}</em></p>
+                </div>
+				<div class="carousel">
+					<ul>
+						<li>
+							<a href="enrollment?CContactID=${(cc.CContactID)!}" target="_self">
+								<div class="icon flight"></div>
+								<p>报名</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="icon hotel"></div>
+								<p>选课</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="icon dhl"></div>
+								<p>请假</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="icon qz"></div>
+								<p>评语</p>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="ky_center ky_mt10 ky_mb5">
+					
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

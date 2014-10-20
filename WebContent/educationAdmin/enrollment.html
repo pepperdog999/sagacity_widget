@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0," name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection">
+<title>报名</title>
+
+<link rel="stylesheet" href="lib/css/mobileyes.css">
+
+<script type="text/javascript" src="lib/javascript/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="lib/javascript/enrollment.js"></script>
+</head>
+<body>
+<div class="ky_main">
+		<div class="ky_pages">
+			<div  id="searchPage">
+			<div class="v-page"  id="main-page" >
+				<div class="ky_head">
+					<a class="back_home" onclick="window.history.back()" href="javascript:"><i></i></a>
+					<h1>报名</h1>
+					<div class="logo"><a onclick="window.history.back()" href="javascript:"></a></div>
+				</div>
+				<div class="ky_page">
+                    <div class="ky_pa10">
+                        <form id="form1">
+                        <div class="tabbox">
+                            <div class="qo_item clrfix">
+                                <div class="qo_type_ticket">姓名</div>
+                                <div class="ky_ticketinput">
+                                <input type="hidden" name="info.CContactID" value="${(contactInfo.CContactID)!}">
+                                <input id="profileID" type="hidden" name="profile.ProfileID" value="${(profile.ProfileID)!}">
+                                <input class="write_input city" type="text" name="info.Name" value="${(contactInfo.Name)!}">
+                                </div>
+                            </div>
+                            <div class="qo_item clrfix">
+                                <div class="qo_type_ticket">性别</div>
+                                <div class="ky_ticketinput select">
+                                	<input id="sexInput"  readonly="readonly" class="write_input city"  datas="sexPage" type="text" name="info.SexID" placeholder="选择性别" validator="notEmpty" value="" data-id="${(contactInfo.SexID)!}">
+                                </div>
+                            </div>
+                            <div class="qo_item clrfix" style="margin-top:20px">
+                                <div class="qo_type_ticket">身份证</div>
+                                <div class="ky_ticketinput">
+                                    <input  class="write_input " type="text" name="profile.IDNo" value="${(profile.IDNo)!}" >
+                                </div>
+                            </div>
+                            <div class="qo_item clrfix" id="retime_div">
+                                <div class="qo_type_ticket">民族</div>
+                                <div class="ky_ticketinput select">
+                                <input id="nationInput"  readonly="readonly" class="write_input city"  datas="nationPage"  type="text" name="profile.NationID" placeholder="选择民族" validator="notEmpty" value="" data-id="${(profile.NationID)!}">
+                                </div>
+                            </div>
+                            <div class="qo_item clrfix" style="margin-top:10px">
+                                <div class="qo_type_ticket">家庭住址</div>
+                                <div class="ky_ticketinput psgnum">
+                                    <input  class="write_input" name="info.Address" placeholder="输入家庭住址" type="text" value="${(contactInfo.Address)!}" />
+                                </div>
+                            </div>
+                            <div class="qo_item clrfix">
+                                <div class="qo_type_ticket">父亲名称</div>
+                                <div class="ky_ticketinput psgnum">
+                                    <input  class="write_input" name="profile.FatherName" placeholder="输入母亲姓名" type="text" value="${(profile.FatherName)!}" />
+                                </div>
+                            </div>
+                            <div class="qo_item clrfix">
+                                <div class="qo_type_ticket">母亲名称</div>
+                                <div class="ky_ticketinput psgnum">
+                                    <input   class="write_input" name="profile.MatherName" placeholder="输入父亲姓名" type="text" value="${(profile.MatherName)!}" />
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="book_new ky_mt10"><a href="javascript:void(0);" onclick="submitForm()">确定</a></div>
+                        </form>
+                        <div class="ky_cityTip" style="display:block" id="tips">“请严格按照身份证或户口填写，此信息将进入学生档案！”</div>
+                    </div>					
+				</div>
+			</div>			
+			</div>
+    </div>
+	<!-- 性别选择 -->
+    <div style="transform: translate3d(1440px, 0px, 0px); display:none;" class="newky_page" id="sexPage">
+		<div class="qn_header">
+				<div class="back"><a href="javascript:void(0)" id="sexBack">后退</a></div>
+				<div class="title">性别选择</div>
+		</div>
+		<div class="qn_index_list">
+			<dl id="sex_list" class="content">
+			</dl>
+		</div>
+	</div>
+	
+	<!--民族选择-->
+	<div style="transform: translate3d(1440px, 0px, 0px); display:none;" class="newky_page" id="nationPage">
+		<div class="qn_header">
+				<div class="back">
+						<a href="javascript:void(0)" id="nationBack">后退</a>
+				</div>
+				<div class="title">民族选择</div>
+		</div>
+		<div class="qn_index_list">
+			<div class="search">
+				<div class="search_icon fl"></div>
+				<div class="delete_icon fr"></div>
+				<div class="input">
+					<input id="searchnation" class="" type="text"   placeholder="搜索民族"  data-val="">
+				</div>
+			</div>
+			<dl id="nation_list" class="content">
+			</dl>
+		</div>
+	</div>
+
+</div>	
+<div id="loading_box" style="position:absolute;left:45%;top:30%;height:33px;width:29px;background:url(lib/images/newloading.gif) no-repeat;background-size:100% auto;display:none"></div>
+<script type="text/javascript">
+	$(function() {
+		initSex();
+		initNation();
+	});
+	
+	function initSex(){
+		var masterID=5;
+		$.ajax({
+            url: "${(interface)!}GetEnumDetailByMasterID",
+            type: "GET",
+            dataType: "jsonp",
+            jsonp: "Callbackparam",
+            data: {
+            	masterID : masterID
+            	},
+            success: function(data) {
+            	var html='';
+                for(var i=0; i<data.Data.length; i++){
+                	html+='<dd id="'+data.Data[i].attrValues[5]+'">'+data.Data[i].attrValues[0]+'</dd>'
+                	if(data.Data[i].attrValues[5]==${(contactInfo.SexID)!(0)}){
+                		$("#sexInput").val(data.Data[i].attrValues[0]);
+                	}
+                }
+                $("#sex_list").html(html);
+                g.listBindEvent($("#sex_list"));
+            }
+        });
+	}
+	
+	function initNation(){
+		var masterID=7;
+		$.ajax({
+            url: "${(interface)!}GetEnumDetailByMasterID",
+            type: "GET",
+            dataType: "jsonp",
+            jsonp: "Callbackparam",
+            data: {
+            	masterID : masterID
+            	},
+            success: function(data) {
+            	var html='';
+                for(var i=0; i<data.Data.length; i++){
+                	html+='<dd id="'+data.Data[i].attrValues[5]+'">'+data.Data[i].attrValues[0]+'</dd>'
+                	if(data.Data[i].attrValues[5]==${(profile.NationID)!(0)}){
+                		$("#nationInput").val(data.Data[i].attrValues[0]);
+                	}
+                }
+                $("#nation_list").html(html);
+            	g.listBindEvent($("#nation_list"));
+            }
+        });
+	}
+	
+	function submitForm(){
+		
+		var data = $("#form1").serializeArray();
+		for(var o in data){
+			if(data[o].name=="info.SexID"){
+				data[o].value=$("#sexInput").attr("data-id");
+			}
+			if(data[o].name=="profile.NationID"){
+				data[o].value=$("#nationInput").attr("data-id");
+			}
+		}	
+		$.ajax({
+			url : "../educationAdmin/updateProfile",
+			type : "get",
+			data : data,
+			dataType: "jsonp",
+			jsonp: "Callbackparam", //服务端接收callback调用的function名
+			jsonpCallback:"success_jsonpCallback", //callback的function名
+			success : function(data) {
+				if(data.Result){
+					$("#profileID").val(data.ProfileID);
+				}
+				$("#tips").html(data.Msg);
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				$("#tips").html(jqXHR.responseText);
+			}
+		});
+	}
+</script>
+</body>
+</html>

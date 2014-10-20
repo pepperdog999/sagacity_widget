@@ -1,0 +1,125 @@
+<html><head>
+<title>号码神搜</title>
+<meta charset="UTF-8">
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport">
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1" media="(device-height: 568px)" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta http-equiv="Cache-Control" content="no-transform ">
+<link rel="alternate" type="application/vnd.wap.xhtml+xml" media="handheld" href="target">
+<link type="text/css" rel="stylesheet" href="css/common.css">
+
+<script src="js/jquery-1.8.2.js"></script>
+<script src="js/base.js"></script>
+</head>
+
+<body>
+<div class="lv-header lv-media-width lv-header-mheight">
+  <div class="lv-title">组织、个人通讯录 | 公众号码</div>
+</div>
+<div class="lv-search search">
+  <div class="lv-div-search">
+	  <form method="post" id="key_search">
+	    <span class="lv-clear-icon01" onclick="union_clear_context('keyword');">
+               <img src="img/clear.png"></span>
+		  <input class="lv-input-search" name="keyword" id="keyword" type="text" onblur="key_blur(this);" value="建设" placeholder="请输入通讯录号码/姓名" autocomplete="off">
+	      <input type="button" class="btn_sub" value="" onclick="btnClick()">   
+      <input type="hidden" name="pageNumber" id="pageNumber" value="1">
+      <input type="hidden" name="pageSize" id="pageSize" value="5">
+      <input type="hidden" name="userID" id="userID" value="${(cc.UserID)!}">
+      <input type="hidden" name="corpID" id="corpID" value="${(cc.corpID)!}">
+      </form>
+      
+  </div>
+  <div class="lv-auto-complete lv-spot-autocomplete" id="search_autocomplete" style="display:none;">
+    	<ul class="lv-search-ul" id="search_success">
+        </ul>
+    </div>
+ </div>
+<div class="lv-search lv-media-width lv-seach-mheight" style="text-align:center; line-height:40px; margin-top:1px">
+	 <span class="lv-color">${(cc.corpName)!}</span>
+</div>
+
+<div class="lv-wrapper lv-min-height lv-media-width">
+   
+  <div class="lv-wrapper-container">
+  	<ul class="lv-spotticket-list jd_wrap" id="data_list">	     
+  		 <li class="lv-spotticket-li clear">
+	      	<div class="lv-spotticket-img lv-pull-left">
+	      	  <img src="img/header.jpg">
+	      	</div>
+	          <div class="lv-spotticket-info lv-pull-right">
+	          	<ul>
+	              	<li class="lv-spotticket-title">
+				  	<div class="jd_title">
+						刘建设（13709080908）
+					</div>
+	                 </li>
+	                  <li><span class="lv-color">部门</span><i>产品策划部</i>
+	                  <span class="lv-pull-right">产品经理</span></li>
+	                  <li class="lv-ellipsis jd_info">xxxxxx有限公司</li>
+	              </ul>
+	          </div>
+	      </li>
+	     <div class="lv-seprator-line"></div>
+	     <li class="lv-spotticket-li clear">
+	      	<div class="lv-spotticket-img lv-pull-left">
+	      	  <img src="img/f_logo.jpg">
+	      	</div>
+	          <div class="lv-spotticket-info lv-pull-right">
+	          	<ul>
+	              	<li class="lv-spotticket-title">
+				  	<div class="jd_title">
+						王建设（18088908890）
+					</div>
+	                 </li>
+	                  <li><span class="lv-color">分组</span><i>朋友</i>
+	                  <span class="lv-pull-right"></span></li>
+	                  <li class="lv-ellipsis jd_info">个人通讯录</li>
+	              </ul>
+	          </div>
+	      </li>
+	      <div class="lv-seprator-line"></div>
+	     <li class="lv-spotticket-li clear">
+	      	<div class="lv-spotticket-img lv-pull-left">
+	      	  <img src="img/js_logo.jpg">
+	      	</div>
+	          <div class="lv-spotticket-info lv-pull-right">
+	          	<ul>
+	              	<li class="lv-spotticket-title">
+				  	<div class="jd_title">
+						<a href="tel:95561">建设银行（95533）</a>
+					</div>
+	                 </li>
+	                  <li><span class="lv-color">分类</span><i>银行</i>
+	                  <span class="lv-pull-right">建设银行</span></li>
+	                  <li class="lv-ellipsis jd_info">公众号码</li>
+	              </ul>
+	          </div>
+	      </li>
+</ul>
+<!-- 如果不是最后一页  -->
+   <div class="lv-nav-li lv-btn-03" id="show_more" style="">
+        <a href="javascript:void(0);" onclick="getMoreListData()">
+           <span>查看更多</span>
+        </a>
+    </div>
+  </div>
+</div>
+
+
+ <!-- footer -->
+
+<div class="lv-footer lv-media-width">
+		<div class="lv-footer-banner">
+				<span class="lv-back-top lv-pull-right">
+				<a href="javascript:void(0);" class="backtrack">TOP</a>
+		      </span> 
+		</div>
+		
+		<div class="lv-footer-link lv-footer-copyright">Copyright &copy;2014 sagacity group </br>
+        </div>
+	</div>
+</body>
+</html>
